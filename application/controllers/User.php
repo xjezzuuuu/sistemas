@@ -49,22 +49,38 @@ class User extends CI_Controller
 
     public function store()
     {
+        $data = array('success' => false, 'messages' => array());
+
         $this->setGeneralRules();
-        if ($this->input->method(false) != 'post') {
-            redirect(base_url() . 'admin/usuarios', 'refresh');
-        }
-        $this->load->library('encryption');
 
-        $this->getPostGeneralFields();
+        if ($this->form_validation->run() == false){
+            foreach ($_POST as $key => $value) {
+                $data['messages'][$key] = form_error($key);     
+            }
+                
+        } else {
 
-        $this->users->setName($this->_name);
-        $this->users->setLastName($this->_last_name);
-        $this->users->setEmail($this->_email);
-        $this->users->setPassword($this->encryption->encrypt($this->_password));
-        $this->users->setCreatedAt(date("Y-m-d H:i:s"));
-        if ($this->users->insert()) {
-            redirect(base_url() . 'admin/usuarios', 'refresh');
+            $data['success'] = true;
+            
+            if ($this->input->method(false) != 'post') {
+                redirect(base_url() . 'admin/usuarios', 'refresh');
+            }
+            
+            $this->load->library('encryption');
+
+            $this->getPostGeneralFields();
+    
+            $this->users->setName($this->_name);
+            $this->users->setLastName($this->_last_name);
+            $this->users->setEmail($this->_email);
+            $this->users->setPassword($this->encryption->encrypt($this->_password));
+            $this->users->setCreatedAt(date("Y-m-d H:i:s"));
+            if ($this->users->insert()) {
+                echo json_encode($data);
+                redirect(base_url() . 'admin/usuarios', 'refresh');
+            }
         }
+        echo json_encode($data);
     }
 
     public function edit($id)
@@ -118,7 +134,18 @@ class User extends CI_Controller
 
     private function setGeneralRules()
     {
-        $this->form_validation->set_rules('name', 'name', 'required|trim');
+        $this->form_validation->set_message('required', 'El campo <b>{field}</b> es obligatorio.');
+        $this->form_validation->set_message('is_unique', 'El <b>{field}</b> ya existe, por favor intente nuevamente con uno distinto.');
+        $this->form_validation->set_message('matches', 'La <b>contraseña</b> no coincide, porfavor intente nuevamente.');
+
+        $this->form_validation->set_error_delimiters('<p class="text">', '</p>');
+
+        $this->form_validation->set_rules('name', 'Nombre', 'required|trim');
+        $this->form_validation->set_rules('last_name', 'Apellido', 'required|trim');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
+        $this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[5]|alpha_dash');
+        $this->form_validation->set_rules('password_confirm', 'Confirmar Contraseña', 'required|matches[password]');
+        
     }
 
     private function getPostGeneralFields()

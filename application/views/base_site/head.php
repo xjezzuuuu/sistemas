@@ -23,6 +23,7 @@
     <link href="<?=asset()?>css/animate.css" rel="stylesheet">
     <!-- This is a Custom CSS -->
     <link href="<?=asset()?>css/style.css" rel="stylesheet">
+    <link href="<?=asset()?>bower_components/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
     <!-- color CSS you can use different color css from css/colors folder -->
     <!-- We have chosen the skin-blue (default.css) for this starter
          page. However, you can choose any other skin from folder css / colors .
@@ -34,4 +35,5 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>

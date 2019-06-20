@@ -25,25 +25,29 @@
                             <h3 class="box-title">Crear Usuario</h3>
                             <p>Usted esta creando un usuario, el cual podrá administrar la plataforma.</p>
                             <br>
-                            <form class="floating-labels" method="post" action="<?=base_url()?>admin/usuarios/store" enctype="multipart/form-data">
+                            
+                            <div id="message"></div>
+                            
+                            <br>
+                            <form class="floating-labels" id="form-user" method="post" action="<?=base_url()?>admin/usuarios/store" enctype="multipart/form-data">
                                 <div class="form-group m-b-40">
-                                    <input type="text" class="form-control" name="name" id="name" required><span class="highlight"></span> <span class="bar"></span>
+                                    <input type="text" class="form-control" name="name" id="name"><span class="highlight"></span> <span class="bar"></span>
                                     <label for="name">Nombre</label>
                                 </div>
                                 <div class="form-group m-b-40">
-                                    <input type="text" class="form-control" name="last_name" id="last_name" required><span class="highlight"></span> <span class="bar"></span>
+                                    <input type="text" class="form-control" name="last_name" id="last_name"><span class="highlight"></span> <span class="bar"></span>
                                     <label for="last_name">Apellido</label>
                                 </div>
                                 <div class="form-group m-b-40">
-                                    <input type="email" class="form-control" name="email" id="email" required><span class="highlight"></span> <span class="bar"></span>
+                                    <input type="email" class="form-control" name="email" id="email"><span class="highlight"></span> <span class="bar"></span>
                                     <label for="email">E-mail</label>
                                 </div>
                                 <div class="form-group m-b-40">
-                                    <input type="password" class="form-control" name="password" id="password" required><span class="highlight"></span> <span class="bar"></span>
+                                    <input type="password" class="form-control" name="password" id="password"><span class="highlight"></span> <span class="bar"></span>
                                     <label for="password">Contraseña</label>
                                 </div>
                                 <div class="form-group m-b-40">
-                                    <input type="password" class="form-control" name="password_confirm" id="password_confirm" required><span class="highlight"></span> <span class="bar"></span>
+                                    <input type="password" class="form-control" name="password_confirm" id="password_confirm"><span class="highlight"></span> <span class="bar"></span>
                                     <label for="password_confirm">Confirmar contraseña</label>
                                 </div>
                                 <div class="block text-center mb-xl-4">
@@ -54,41 +58,56 @@
                         </div>
                     </div>
                 </div>
-                <!-- .row -->
-                <!-- .right-sidebar -->
-                <div class="right-sidebar">
-                    <div class="slimscrollright">
-                        <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
-                        <div class="r-panel-body">
-                            <ul class="m-t-20 chatonline">
-                                <li><b>Chat option</b></li>
-                                <li>
-                                <a href="javascript:void(0)"><img src="<?=asset()?>images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="<?=asset()?>images/users/genu.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="<?=asset()?>images/users/ritesh.jpg" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="<?=asset()?>images/users/arijit.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="<?=asset()?>images/users/govinda.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="<?=asset()?>images/users/hritik.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="<?=asset()?>images/users/john.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="<?=asset()?>images/users/pawandeep.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.right-sidebar -->
             </div>
+
+            <script>
+	$('#form-user').submit(function(e) {
+		e.preventDefault();
+
+		var me = $(this);
+
+		// perform ajax
+		$.ajax({
+			url: me.attr('action'),
+			type: 'post',
+			data: me.serialize(),
+			dataType: 'json',
+			success: function(response) {
+				if (response.success == true) {
+                    $('.text').remove();
+                    
+					// if success we would show message
+					// and also remove the error class
+					$('.form-group').removeClass('has-error')
+									.removeClass('has-success');
+                    $('#message').removeClass('alert alert-danger')  
+                                 .addClass('alert alert-success') 
+                                 .append('Usuario registrado con exito!');           
+
+					// reset the form
+                    window.setTimeout(function(){
+
+// Move to a new location or you can do something else
+window.location.href = "<?=base_url()?>admin/usuarios";
+
+}, 1000);
+
+				} else {
+                    $('.text').remove();
+					$.each(response.messages, function(key, value) {
+                        var element = $('#' + key);
+						
+                        element
+                        .closest('div.form-group')
+                        .removeClass('has-error')
+                        .removeClass('has-success')
+						.addClass(value.length > 0 ? 'has-error' : 'has-success'); 
+                        
+                        $('#message').append(value)
+                            .addClass('alert alert-danger');
+					});
+				}
+			}
+		});
+	});
+</script>

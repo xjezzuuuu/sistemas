@@ -57,6 +57,8 @@
             } 
         });
     });
+	
+
 
     //Custom Image
     $('#sa-image').click(function(){
