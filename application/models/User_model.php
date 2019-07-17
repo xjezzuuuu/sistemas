@@ -8,7 +8,6 @@ class User_model extends CI_Model
     private $last_name;
     private $email;
     private $password;
-    private $image;
     private $created_at;
     private $updated_at;
     private $deleted_at;
@@ -18,7 +17,6 @@ class User_model extends CI_Model
     const LAST_NAME = 'last_name';
     const EMAIL = 'email';
     const PASSWORD = 'password';
-    const IMAGE = 'image';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
     const DELETED_AT = 'deleted_at';
@@ -99,10 +97,6 @@ class User_model extends CI_Model
             $data = array_merge($data, [self::PASSWORD => $this->password]);
         }
 
-        if ($this->image != '') {
-            $data = array_merge($data, [self::IMAGE => $this->image]);
-        }
-
         if ($this->created_at != '') {
             $data = array_merge($data, [self::CREATED_AT => $this->created_at]);
         }
@@ -161,16 +155,6 @@ class User_model extends CI_Model
     public function setPassword($password)
     {
         $this->password = $password;
-    }
-
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    public function setImage($image)
-    {
-        $this->image = $image;
     }
 
     public function getCreatedAt()

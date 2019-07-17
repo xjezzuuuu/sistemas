@@ -17,12 +17,20 @@
     <title>Asis Pro <?php if(!empty($title)): echo $title; endif; ?></title>
     <!-- Bootstrap Core CSS -->
     <link href="<?=asset()?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?=asset()?>bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <!-- Footable CSS -->
+    <link href="<?=asset()?>bower_components/footable/css/footable.core.css" rel="stylesheet">
+    <link href="<?=asset()?>bower_components/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <!-- This is Sidebar menu CSS -->
     <link href="<?=asset()?>bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
     <!-- This is a Animation CSS -->
     <link href="<?=asset()?>css/animate.css" rel="stylesheet">
+    <!-- toast CSS -->
+    <link href="<?=asset()?>bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
     <!-- This is a Custom CSS -->
     <link href="<?=asset()?>css/style.css" rel="stylesheet">
+    <link href="<?=asset()?>css/custom.css" rel="stylesheet">
     <link href="<?=asset()?>bower_components/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
     <!-- color CSS you can use different color css from css/colors folder -->
     <!-- We have chosen the skin-blue (default.css) for this starter
@@ -35,5 +43,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- This is a Custom CSS -->
+    <link href="<?=asset()?>css/custom.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>

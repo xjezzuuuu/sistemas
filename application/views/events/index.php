@@ -22,42 +22,41 @@
                     <div class="col-md-12">
                         <div class="white-box">
                             <div class="block pull-right mb-xl-4">
-							    <a class="fcbtn btn btn-success btn-outline btn-1d" href="<?=base_url()?>admin/clientes/create">Crear Cliente</a>
+							    <a class="fcbtn btn btn-success btn-outline btn-1d" href="<?=base_url()?>admin/eventos/create">Crear Evento</a>
 						    </div>
-                            <h3 class="box-title">Gestionar Clientes</h3>
-                            <p>Administre los clientes que podrán realizar la compra de entradas.</p>
+                            <h3 class="box-title">Gestionar Eventos</h3>
+                            <p>Administre los eventos a los cuales se podrá comprar entradas.</p>
                             <div class="table-responsive">
                                 <table class="table color-table inverse-table">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Rut</th>
                                             <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Género</th>
-                                            <th>Edad</th>
-                                            <th>Correo</th>
-                                            <th>Huella Dactilar</th>
+                                            <th>Fecha</th>
+                                            <th>Capacidad</th>
+                                            <th>Dirección</th>
+                                            <th>Ciudad</th>
+                                            <th>País</th>
                                             <th class="text-center">Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach($allClients as $clients): ?>
+                                        <?php foreach($allEvents as $events): ?>
                                             <tr>
-                                                <td><?=$clients['id']?></td>
-                                                <td><?=$clients['rut']?></td>
-                                                <td><?=$clients['name']?></td>
-                                                <td><?=$clients['lastname']?></td>
-                                                <td><?=$clients['gender']?></td>
-                                                <td><?=$clients['age']?></td>
-                                                <td><?=$clients['email']?></td>
+                                                <td><?=$events['id']?></td>
+                                                <td><?=$events['name']?></td>
+                                                <td><?=$events['date']?></td>
+                                                <td><?=$events['capacity']?></td>
+                                                <td><?=$events['address']?></td>
+                                                <td><?=$events['city']?></td>
+                                                <td><?=$events['country']?></td>
                                                 <td></td>
                                                 <td class="text-center">
                                                     <div class="btn-action-table">
-                                                        <a href="<?=base_url()?>admin/clientes/<?=$clients['id']?>/edit">
+                                                        <a href="<?=base_url()?>admin/eventos/<?=$events['id']?>/edit">
                                                             <span class="btn btn-warning fa fa-pencil"></span>
                                                         </a>
-                                                        <a href="<?=base_url()?>admin/clientes/<?=$clients['id']?>/delete">
+                                                        <a href="<?=base_url()?>admin/eventos/<?=$events['id']?>/delete">
                                                             <span class="btn btn-danger fa fa-times"></span>
                                                         </a>
                                                     </div>

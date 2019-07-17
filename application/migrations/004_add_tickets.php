@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Migration_Add_Clients extends CI_Migration
+class Migration_Add_Tickets extends CI_Migration
 {
     public function up()
     {
@@ -9,37 +9,33 @@ class Migration_Add_Clients extends CI_Migration
             'id' => array(
                 'type' => 'int',
                 'constraint' => 11,
-                'unsigned' => true,
                 'auto_increment' => true,
-            ),
-            'rut' => array(
-                'type' => 'varchar',
-                'constraint' => 255,
-                'unsigned' => true,
             ),
             'name' => array(
                 'type' => 'varchar',
-                'constraint' => 255,
+                'constraint' => 45,
             ),
-            'lastname' => array(
+            'type' => array(
                 'type' => 'varchar',
-                'constraint' => 255,
+                'constraint' => 45,
             ),
-            'gender' => array(
-                'type' => 'varchar',
-                'constraint' => 255,
+            'price' => array(
+                'type' => 'int',
+                'constraint' => 11,
             ),
-            'age' => array(
-                'type' => 'varchar',
-                'constraint' => 255,
+            'quantity' => array(
+                'type' => 'int',
+                'constraint' => 11,
             ),
-            'email' => array(
-                'type' => 'varchar',
-                'constraint' => 255,
-            ),
-            'fingerprint' => array(
-                'type' => 'varchar',
-                'constraint' => 255,
+            'event_id' => array(
+                'type' => 'int',
+                'constraint' => 11,
+                'unsigned' => true,
+                'null' => false,
+                'foreign_key' => array(
+                    'table' => 'event',
+                    'field' => 'id'
+                )
             ),
             'created_at' => array(
                 'type' => 'timestamp',
@@ -56,13 +52,13 @@ class Migration_Add_Clients extends CI_Migration
         ));
 
         $this->dbforge->add_key('id', true);
-        $this->dbforge->create_table('clients');
+        $this->dbforge->create_table('ticket');
         
-        echo "Migracion 2 - Clientes: OK <br/>";
+        echo "Migracion 4 - Entradas: OK <br/>";
     }
     
     public function down()
     {
-        $this->dbforge->drop_table('clients');
+        $this->dbforge->drop_table('ticket');
     }
 }

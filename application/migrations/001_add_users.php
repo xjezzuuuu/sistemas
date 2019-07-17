@@ -28,10 +28,6 @@ class Migration_Add_Users extends CI_Migration
                 'type' => 'varchar',
                 'constraint' => 255,
             ),
-            'image' => array(
-                'type' => 'varchar',
-                'constraint' => 255,
-            ),
             'created_at' => array(
                 'type' => 'timestamp',
                 'null' => true,
@@ -56,16 +52,14 @@ class Migration_Add_Users extends CI_Migration
                 'last_name' => 'Padilla',
                 'password' => $this->encryption->encrypt('123123'),
                 'email' => 'jpadilla@setinfo.cl',
-                'image' => '',
                 'created_at' => '2018-02-22 00:43:00'
             ),
             array(
                 'id' => '2',
-                'name' => 'Hugo',
-                'last_name' => 'Paez',
+                'name' => 'Michael',
+                'last_name' => 'Sandoval',
                 'password' => $this->encryption->encrypt('123123'),
-                'email' => 'hapj@outlook.cl',
-                'image' => '',
+                'email' => 'msandoval@setinfo.cl',
                 'created_at' => '2018-02-22 00:42:00'
             ),
         );

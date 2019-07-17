@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Migration_Add_Clients extends CI_Migration
+class Migration_Add_Events extends CI_Migration
 {
     public function up()
     {
@@ -9,37 +9,31 @@ class Migration_Add_Clients extends CI_Migration
             'id' => array(
                 'type' => 'int',
                 'constraint' => 11,
-                'unsigned' => true,
                 'auto_increment' => true,
-            ),
-            'rut' => array(
-                'type' => 'varchar',
-                'constraint' => 255,
-                'unsigned' => true,
             ),
             'name' => array(
                 'type' => 'varchar',
-                'constraint' => 255,
+                'constraint' => 45,
             ),
-            'lastname' => array(
+            'date' => array(
+                'type' => 'timestamp',
+                'null' => true,
+            ),
+            'capacity' => array(
+                'type' => 'int',
+                'constraint' => 11,
+            ),
+            'address' => array(
                 'type' => 'varchar',
                 'constraint' => 255,
             ),
-            'gender' => array(
+            'city' => array(
                 'type' => 'varchar',
-                'constraint' => 255,
+                'constraint' => 45,
             ),
-            'age' => array(
+            'country' => array(
                 'type' => 'varchar',
-                'constraint' => 255,
-            ),
-            'email' => array(
-                'type' => 'varchar',
-                'constraint' => 255,
-            ),
-            'fingerprint' => array(
-                'type' => 'varchar',
-                'constraint' => 255,
+                'constraint' => 45,
             ),
             'created_at' => array(
                 'type' => 'timestamp',
@@ -56,13 +50,13 @@ class Migration_Add_Clients extends CI_Migration
         ));
 
         $this->dbforge->add_key('id', true);
-        $this->dbforge->create_table('clients');
+        $this->dbforge->create_table('event');
         
-        echo "Migracion 2 - Clientes: OK <br/>";
+        echo "Migracion 3 - Eventos: OK <br/>";
     }
     
     public function down()
     {
-        $this->dbforge->drop_table('clients');
+        $this->dbforge->drop_table('event');
     }
 }

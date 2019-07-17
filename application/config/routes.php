@@ -71,10 +71,27 @@ $route['admin/clientes/(:num)/edit']['get'] = 'Client/edit/$1';
 $route['admin/clientes/(:num)/update']['post'] = 'Client/update/$1';
 $route['admin/clientes/(:num)/delete']['get'] = 'Client/delete/$1';
 
+/* Route Events */
+$route['admin/eventos']['get'] = 'Event/index';
+$route['admin/eventos/create']['get'] = 'Event/create';
+$route['admin/eventos/store']['post'] = 'Event/store';
+$route['admin/eventos/(:num)/edit']['get'] = 'Event/edit/$1';
+$route['admin/eventos/(:num)/update']['post'] = 'Event/update/$1';
+$route['admin/eventos/(:num)/delete']['get'] = 'Event/delete/$1';
+
+/* Route Tickets */
+$route['admin/entradas']['get'] = 'Ticket/index';
+$route['admin/entradas/create']['get'] = 'Ticket/create';
+$route['admin/entradas/store']['post'] = 'Ticket/store';
+$route['admin/entradas/(:num)/edit']['get'] = 'Ticket/edit/$1';
+$route['admin/entradas/(:num)/update']['post'] = 'Ticket/update/$1';
+$route['admin/entradas/(:num)/delete']['get'] = 'Ticket/delete/$1';
+
+
 /* Route Login */
 $route['admin']['get'] = 'Login/index';
 $route['admin/login']['get'] = 'Login/index';
 $route['admin/login']['post'] = 'Login/login';
 $route['admin/logout']['get'] = 'Login/logout';
 
-$route['testbyid/(:num)']['get'] = 'Rest/testbyid/$1';
+$route['testbyid/(:num)']['get'] = 'Rest/testById_get/$1';

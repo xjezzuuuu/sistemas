@@ -12,7 +12,7 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="<?=base_url()?>">Inicio</a></li>
-                            <li><a href="<?=base_url()?>admin/clientes">Clientes</a></li>
+                            <li><a href="<?=base_url()?>admin/entradas">Entradas</a></li>
                             <li class="active"><?php if(!empty($subtitle)): echo $subtitle; endif; ?></li>
                         </ol>
                     </div>
@@ -22,51 +22,49 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="white-box">
-                            <h3 class="box-title">Crear Cliente</h3>
-                            <p>Usted esta creando un cliente los cuales podrán realizar la compra de entradas.</p>
+                            <h3 class="box-title">Crear Entrada</h3>
+                            <p>Usted esta creando una entrada para algún evento previamente creado.</p>
                             <br>
-
+                            
                             <div id="message"></div>
-
-                            <br><br>
-                            <form class="floating-labels" id="form-user" method="post" action="<?=base_url()?>admin/clientes/store" enctype="multipart/form-data">  
-                                <div class="form-group m-b-40">
-                                    <input type="text" class="form-control" name="rut" id="rut"><span class="highlight"></span> <span class="bar"></span>
-                                    <label for="rut">Rut</label>
-                                </div>
+                            
+                            <br>
+                            <form class="floating-labels" id="form-user" method="post" action="<?=base_url()?>admin/entradas/store" enctype="multipart/form-data">
                                 <div class="form-group m-b-40">
                                     <input type="text" class="form-control" name="name" id="name"><span class="highlight"></span> <span class="bar"></span>
                                     <label for="name">Nombre</label>
                                 </div>
                                 <div class="form-group m-b-40">
-                                    <input type="text" class="form-control" name="lastname" id="lastname"><span class="highlight"></span> <span class="bar"></span>
-                                    <label for="last_name_p">Apellido</label>
+                                    <input type="text" class="form-control" name="type" id="type"><span class="highlight"></span> <span class="bar"></span>
+                                    <label for="type">Tipo</label>
                                 </div>
                                 <div class="form-group m-b-40">
-                                    <select class="form-control p-0" name="gender" id="gender">
-                                        <option value="Masculino">Masculino</option>
-                                        <option value="Femenino">Femenino</option>
+                                    <input type="text" class="form-control" name="price" id="price"><span class="highlight"></span> <span class="bar"></span>
+                                    <label for="price">Precio</label>
+                                </div>
+                                <div class="form-group m-b-40">
+                                    <input type="text" class="form-control" name="quantity" id="quantity"><span class="highlight"></span> <span class="bar"></span>
+                                    <label for="quantity">Cantidad</label>
+                                </div>
+                                <div class="form-group m-b-40">
+                                    <select class="form-control p-0" name="event_id" id="event_id">
+                                        <?php foreach($allEvents as $events): ?>
+                                            <option value="<?=$events['id']?>"><?=$events['name']?></option>
+                                        <?php endforeach; ?>
                                     </select><span class="highlight"></span> <span class="bar"></span>
-                                    <label for="gender">Género</label>
-                                </div>
-                                <div class="form-group m-b-40">
-                                    <input type="text" class="form-control" name="age" id="age"><span class="highlight"></span> <span class="bar"></span>
-                                    <label for="age">Edad</label>
-                                </div>
-                                <div class="form-group m-b-40">
-                                    <input type="email" class="form-control" name="email" id="email"><span class="highlight"></span> <span class="bar"></span>
-                                    <label for="email">E-mail</label>
+                                    <label for="event_id">Evento</label>
                                 </div>
                                 <div class="block text-center mb-xl-4">
-                                    <input name="submit" type="submit" value="Crear Cliente" class="fcbtn btn btn-success btn-outline btn-1d">
-                                    <a href="<?=base_url()?>admin/clientes" class="fcbtn btn btn-danger btn-outline btn-1d">Cancelar</a>
+                                    <input name="submit" type="submit" value="Crear Entrada" class="fcbtn btn btn-success btn-outline btn-1d">
+                                    <a href="<?=base_url()?>admin/entradas" class="fcbtn btn btn-danger btn-outline btn-1d">Cancelar</a>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <script>
+            <script>
 	$('#form-user').submit(function(e) {
 		e.preventDefault();
 
@@ -88,13 +86,13 @@
 									.removeClass('has-success');
                     $('#message').removeClass('alert alert-danger')  
                                  .addClass('alert alert-success') 
-                                 .append('Usuario registrado con exito!');           
+                                 .append('Entrada registrada con exito!');           
 
 					// reset the form
                     window.setTimeout(function(){
 
 // Move to a new location or you can do something else
-window.location.href = "<?=base_url()?>admin/clientes";
+window.location.href = "<?=base_url()?>admin/entradas";
 
 }, 1000);
 

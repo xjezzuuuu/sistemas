@@ -11,7 +11,8 @@
                     <!-- .breadcrumb -->
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
-                        <li><a href="<?=base_url()?>">Inicio</a></li>
+                            <li><a href="<?=base_url()?>">Inicio</a></li>
+                            <li><a href="<?=base_url()?>admin/clientes">Clientes</a></li>
                             <li class="active"><?php if(!empty($subtitle)): echo $subtitle; endif; ?></li>
                         </ol>
                     </div>
@@ -19,54 +20,48 @@
                 </div>
                 <!-- .row -->
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="white-box">
-                            <div class="block pull-right mb-xl-4">
-							    <a class="fcbtn btn btn-success btn-outline btn-1d" href="<?=base_url()?>admin/clientes/create">Crear Cliente</a>
-						    </div>
-                            <h3 class="box-title">Gestionar Clientes</h3>
+                            <h3 class="box-title">Editar Cliente: <span class="text-success"><?=$client['name']?> <?=$client['last_name_p']?> <?=$client['last_name_m']?></span></h3>
                             <p>Administre los clientes que podrán realizar la compra de entradas.</p>
-                            <div class="table-responsive">
-                                <table class="table color-table inverse-table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Rut</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Género</th>
-                                            <th>Edad</th>
-                                            <th>Correo</th>
-                                            <th>Huella Dactilar</th>
-                                            <th class="text-center">Acción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach($allClients as $clients): ?>
-                                            <tr>
-                                                <td><?=$clients['id']?></td>
-                                                <td><?=$clients['rut']?></td>
-                                                <td><?=$clients['name']?></td>
-                                                <td><?=$clients['lastname']?></td>
-                                                <td><?=$clients['gender']?></td>
-                                                <td><?=$clients['age']?></td>
-                                                <td><?=$clients['email']?></td>
-                                                <td></td>
-                                                <td class="text-center">
-                                                    <div class="btn-action-table">
-                                                        <a href="<?=base_url()?>admin/clientes/<?=$clients['id']?>/edit">
-                                                            <span class="btn btn-warning fa fa-pencil"></span>
-                                                        </a>
-                                                        <a href="<?=base_url()?>admin/clientes/<?=$clients['id']?>/delete">
-                                                            <span class="btn btn-danger fa fa-times"></span>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <br>
+                            <form class="floating-labels" method="post" action="<?=base_url()?>admin/clientes/<?=$client['id']?>/update" enctype="multipart/form-data">
+                                <div class="form-group m-b-40">
+                                    <input type="text" class="form-control" name="rut" id="rut" value="<?=$client['rut']?>" required><span class="highlight"></span> <span class="bar"></span>
+                                    <label for="name">Rut</label>
+                                </div>
+                                <div class="form-group m-b-40">
+                                    <input type="text" class="form-control" name="name" id="name" value="<?=$client['name']?>" required><span class="highlight"></span> <span class="bar"></span>
+                                    <label for="name">Nombre</label>
+                                </div>
+                                <div class="form-group m-b-40">
+                                    <input type="text" class="form-control" name="last_name_p" id="last_name_p" value="<?=$client['last_name_p']?>" required><span class="highlight"></span> <span class="bar"></span>
+                                    <label for="last_name_p">Apellido Paterno</label>
+                                </div>
+                                <div class="form-group m-b-40">
+                                    <input type="text" class="form-control" name="last_name_m" id="last_name_m" value="<?=$client['last_name_m']?>" required><span class="highlight"></span> <span class="bar"></span>
+                                    <label for="last_name_m">Apellido Materno</label>
+                                </div>
+                                <div class="form-group m-b-40">
+                                    <input type="email" class="form-control" name="email" id="email" value="<?=$client['email']?>" required><span class="highlight"></span> <span class="bar"></span>
+                                    <label for="email">E-mail</label>
+                                </div>
+                                <div class="form-group m-b-40">
+                                    <select class="form-control p-0" name="gender" id="gender" required>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Femenino">Femenino</option>
+                                    </select><span class="highlight"></span> <span class="bar"></span>
+                                    <label for="gender">Género</label>
+                                </div>
+                                <div class="form-group m-b-40">
+                                    <input type="text" class="form-control" name="age" id="age" value="<?=$client['age']?>" required><span class="highlight"></span> <span class="bar"></span>
+                                    <label for="age">Edad</label>
+                                </div>
+                                <div class="block text-center mb-xl-4">
+                                    <input name="submit" type="submit" value="Modificar Cliente" class="fcbtn btn btn-success btn-outline btn-1d">
+                                    <a href="<?=base_url()?>admin/clientes" class="fcbtn btn btn-danger btn-outline btn-1d">Cancelar</a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

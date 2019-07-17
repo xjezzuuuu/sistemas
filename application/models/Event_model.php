@@ -1,28 +1,26 @@
 <?php
-class Client_model extends CI_Model
+class Event_model extends CI_Model
 {
-    private $table = 'clients';
+    private $table = 'event';
     
     private $id;
-    private $rut;
     private $name;
-    private $lastname;
-    private $gender;
-    private $age;
-    private $email;
-    private $fingerprint;
+    private $date;
+    private $capacity;
+    private $address;
+    private $city;
+    private $country;
     private $created_at;
     private $updated_at;
     private $deleted_at;
     
     const ID = 'id';
-    const RUT = 'rut';
     const NAME = 'name';
-    const LASTNAME = 'lastname';
-    const GENDER = 'gender';
-    const AGE = 'age';
-    const EMAIL = 'email';
-    const FINGERPRINT = 'fingerprint';
+    const DATE = 'date';
+    const CAPACITY = 'capacity';
+    const ADDRESS = 'address';
+    const CITY = 'city';
+    const COUNTRY = 'country';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
     const DELETED_AT = 'deleted_at';
@@ -41,20 +39,6 @@ class Client_model extends CI_Model
         $this->db->select('*', false);
         $this->db->from($this->table);
         $this->db->where('id', $id, true);
-        $this->db->where('deleted_at', null);
-        $query = $this->db->get();
-        if ($query->num_rows() > 0) {
-            return $query->result_array()[0];
-        } else {
-            return null;
-        }
-    }
-
-    public function readByEmail($email)
-    {
-        $this->db->select('*', false);
-        $this->db->from($this->table);
-        $this->db->where('email', $email, true);
         $this->db->where('deleted_at', null);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
@@ -95,13 +79,12 @@ class Client_model extends CI_Model
     private function getDataArrayClient()
     {
         $data = array(
-            self::RUT => $this->rut,
             self::NAME => $this->name,
-            self::LASTNAME => $this->lastname,
-            self::GENDER => $this->gender,
-            self::AGE => $this->age,
-            self::EMAIL => $this->email,
-            self::FINGERPRINT => $this->fingerprint);
+            self::DATE => $this->date,
+            self::CAPACITY => $this->capacity,
+            self::ADDRESS => $this->address,
+            self::CITY => $this->city,
+            self::COUNTRY => $this->country);
 
 
             if ($this->created_at != '') {
@@ -125,16 +108,6 @@ class Client_model extends CI_Model
         $this->id = $id;
     }
 
-    public function getRut()
-    {
-        return $this->rut;
-    }
-
-    public function setRut($rut)
-    {
-        $this->rut = $rut;
-    }
-
     public function getName()
     {
         return $this->name;
@@ -145,54 +118,54 @@ class Client_model extends CI_Model
         $this->name = $name;
     }
 
-    public function getLastName()
+    public function getDate()
     {
-        return $this->lastname;
+        return $this->date;
     }
 
-    public function setLastName($lastname)
+    public function setDate($date)
     {
-        $this->lastname = $lastname;
+        $this->date = $date;
     }
 
-    public function getGender()
+    public function getCapacity()
     {
-        return $this->gender;
+        return $this->capacity;
     }
 
-    public function setGender($gender)
+    public function setCapacity($capacity)
     {
-        $this->gender = $gender;
+        $this->capacity = $capacity;
     }
 
-    public function getAge()
+    public function getAddress()
     {
-        return $this->age;
+        return $this->address;
     }
 
-    public function setAge($age)
+    public function setAddress($address)
     {
-        $this->age = $age;
+        $this->address = $address;
     }
 
-    public function getEmail()
+    public function getCity()
     {
-        return $this->email;
+        return $this->city;
     }
 
-    public function setEmail($email)
+    public function setCity($city)
     {
-        $this->email = $email;
+        $this->city = $city;
     }
 
-    public function getFingerPrint()
+    public function getCountry()
     {
-        return $this->fingerprint;
+        return $this->country;
     }
 
-    public function setFingerPrint($fingerprint)
+    public function setCountry($country)
     {
-        $this->fingerprint = $fingerprint;
+        $this->country = $country;
     }
 
     public function getCreatedAt()
